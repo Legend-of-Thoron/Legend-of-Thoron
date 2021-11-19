@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Legend_of_Thoron
@@ -71,12 +72,40 @@ namespace Legend_of_Thoron
             this.BatohZbrane.Remove(zbran);
             Console.WriteLine("\n ! Zahodil jsi {0}.", zbran.Nazev);
         }
-        public void NasaditZbran(Zbran zbran)
+        public void NasaditZbran()
         {
-            this.NasazenaZbran = zbran;
-            Console.WriteLine("\n ! Zbraň {0} byla nasazena.", zbran.Nazev);
+            Console.Write("\n - Vyber si předmět z inventáře: ");
+            int vyber = int.Parse(Console.ReadLine()) - 1;
+            
+            if (vyber < this.BatohZbrane.Count)
+            {
+                Zbran zbran = this.BatohZbrane[vyber];
+
+                if (BatohZbrane.Contains(zbran))
+                {
+                    this.NasazenaZbran = zbran;
+                    Console.WriteLine("\n ! Zbraň {0} byla nasazena.", this.NasazenaZbran.Nazev);
+                }
+                else
+                {
+                    Console.WriteLine("\n ! Nevlastníš zbraň {0}.", zbran.Nazev);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Takový předmět nemnáš v inventáři!");
+                this.NasaditZbran();
+            }
         }
-            public void Inventar()
+        public void NasaditBrneni()
+        {
+            if (BatohBrneni.Any())
+            {
+                this.NasazeneBrneni = this.BatohBrneni[0];
+                Console.WriteLine("\n ! Brnění {0} bylo nasazeno.", this.NasazeneBrneni.Nazev);
+            }
+        }
+        public void Inventar()
         {
             int i = 1;
             Console.WriteLine("\n ----------- INVENTÁŘ -----------");
@@ -84,13 +113,13 @@ namespace Legend_of_Thoron
             Console.WriteLine("\n ------ Zbraně v inventáři ------");
             if (this.BatohZbrane.Count! >= 1)
             {
-                foreach (var predmet in this.BatohZbrane)
+                foreach (var z in this.BatohZbrane)
                 {
 
-                    if (this.NasazenaZbran == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
+                    if (this.NasazenaZbran == z)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, z.Nazev);
                     else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
+                        Console.WriteLine(" {0}. {1}", i, z.Nazev);
                     i++;
                 }
             }
@@ -101,13 +130,13 @@ namespace Legend_of_Thoron
             Console.WriteLine("\n ------ Brnění v inventáři ------");
             if (this.BatohBrneni.Count! >= 1)
             {
-                foreach (var predmet in this.BatohBrneni)
+                foreach (var b in this.BatohBrneni)
                 {
 
-                    if (this.NasazeneBrneni == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
+                    if (this.NasazeneBrneni == b)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, b.Nazev);
                     else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
+                        Console.WriteLine(" {0}. {1}", i, b.Nazev);
                     i++;
                 }
             }
@@ -118,12 +147,12 @@ namespace Legend_of_Thoron
             Console.WriteLine("\n ------ Lektvary v inventáři ------");
             if (this.BatohLektvary.Count !>= 1)
             {
-                foreach (var predmet in this.BatohLektvary)
+                foreach (var l in this.BatohLektvary)
                 {
-                    if (this.NasazenyLektvar == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
+                    if (this.NasazenyLektvar == l)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, l.Nazev);
                     else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
+                        Console.WriteLine(" {0}. {1}", i, l.Nazev);
                     i++;
                 }
             } else
