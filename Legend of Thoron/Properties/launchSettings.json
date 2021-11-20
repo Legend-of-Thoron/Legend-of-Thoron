@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Legend of Thoron": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2"
+    },
+    "Executable": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Škola\\Programování\\Legend of Thoron\\Legend of Thoron\\bin\\Debug\\netcoreapp3.1\\Legend of Thoron.exe"
+    }
+  }
+}
