@@ -189,9 +189,9 @@ namespace Legend_of_Thoron
                 {
 
                     if (this.NasazenaZbran == z)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, z.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Síly] (Nasazeno)", i, z.Nazev, z.Sila);
                     else
-                        Console.WriteLine(" {0}. {1}", i, z.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Síly]", i, z.Nazev, z.Sila);
                     i++;
                 }
                 Console.WriteLine("\n --------------------------------");
@@ -222,9 +222,9 @@ namespace Legend_of_Thoron
                 {
 
                     if (this.NasazeneBrneni == b)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, b.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Obrany] (Nasazeno)", i, b.Nazev, b.Obrana);
                     else
-                        Console.WriteLine(" {0}. {1}", i, b.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Obrany]", i, b.Nazev, b.Obrana);
                     i++;
                 }
                 Console.WriteLine("\n --------------------------------");
@@ -256,9 +256,9 @@ namespace Legend_of_Thoron
                 {
 
                     if (this.NasazenyLektvar == l)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, l.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Zivota] (Nasazeno)", i, l.Nazev, l.AktualniHP);
                     else
-                        Console.WriteLine(" {0}. {1}", i, l.Nazev);
+                        Console.WriteLine(" {0}. {1} [+{2} Zivota]", i, l.Nazev, l.AktualniHP);
                     i++;
                 }
                 Console.WriteLine("\n --------------------------------");
