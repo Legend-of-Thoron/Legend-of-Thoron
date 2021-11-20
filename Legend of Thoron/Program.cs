@@ -23,8 +23,9 @@ namespace Legend_of_Thoron
     {
         static void Main(string[] args)
         {
-            var hra = new Hra();
-            hra.Zapnout();
+            Test.Run();
+            //var hra = new Hra();
+            //hra.Zapnout();
         }
     }
 }

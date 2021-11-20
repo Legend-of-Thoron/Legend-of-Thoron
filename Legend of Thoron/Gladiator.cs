@@ -5,19 +5,21 @@ using System.Text;
 
 namespace Legend_of_Thoron
 {
-    public class Hrdina
+    public class Gladiator
     {
-        
 
-        public Hrdina()
+
+        public Gladiator()
         {
-            Console.WriteLine(" \\ Probíhá inicializace hrdiny... \n");
+            Console.WriteLine(" \\ Probíhá inicializace gladiátora... \n");
 
             this.BatohBrneni = new List<Brneni>();
             this.BatohZbrane = new List<Zbran>();
             this.BatohLektvary = new List<Lektvar>();
             this.Sila = 10;
+            this.ZakladniSila = 10;
             this.Obrana = 10;
+            this.ZakladniObrana = 10;
             this.ZakladniHP = 30;
             this.AktualniHP = 30;
             this.Zlataky = 0;
@@ -26,7 +28,9 @@ namespace Legend_of_Thoron
         // Vlastnosti naší třídy
         public string Jmeno { get; set; }
         public int Sila { get; set; }
+        public int ZakladniSila { get; set; }
         public int Obrana { get; set; }
+        public int ZakladniObrana { get; set; }
         public int ZakladniHP { get; set; }
         public int AktualniHP { get; set; }
         public int Zlataky { get; set; }
@@ -45,16 +49,18 @@ namespace Legend_of_Thoron
             Console.WriteLine(" \\ Probíhá vytváření hrdiny...");
             while (String.IsNullOrWhiteSpace(this.Jmeno))
             {
-                Console.Write(" - Pojmenuj svého hrdinu: ");
+                Console.Write(" - Pojmenuj svého gladiátora: ");
                 this.Jmeno = Console.ReadLine();
-                if(this.Jmeno == "King")
+                if (this.Jmeno == "King")
                 {
-                    this.Sila = 50;
-                    this.Obrana = 50;
+                    this.ZakladniSila = 50;
+                    this.ZakladniObrana = 50;
+                    this.Sila = ZakladniSila;
+                    this.Obrana = ZakladniObrana;
                 }
             }
 
-            Console.WriteLine(" \\ Hrdina vytvořen... \n");
+            Console.WriteLine(" \\ Gladiátor vytvořen... \n");
         }
         public void Statistiky()
         {
@@ -78,10 +84,14 @@ namespace Legend_of_Thoron
             this.BatohBrneni.Add(brneni);
             Console.WriteLine("\n ! Sebral jsi {0}.", brneni.Nazev);
         }
-        public void ZahoditZbran(Zbran zbran)
+        public void SebratLektvar(Lektvar lektvar)
         {
-            this.BatohZbrane.Remove(zbran);
-            Console.WriteLine("\n ! Zahodil jsi {0}.", zbran.Nazev);
+            this.BatohLektvary.Add(lektvar);
+            Console.WriteLine("\n ! Sebral jsi {0}.", lektvar.Nazev);
+        }
+        public void ZahoditLektvar(Lektvar lektvar)
+        {
+            this.BatohLektvary.Remove(lektvar);
         }
         public void NasaditZbran()
         {
@@ -89,13 +99,14 @@ namespace Legend_of_Thoron
             int vyber;
             if (int.TryParse(Console.ReadLine(), out vyber))
             {
-                if ((vyber-1) < this.BatohZbrane.Count)
+                if ((vyber - 1) < this.BatohZbrane.Count)
                 {
-                    Zbran zbran = this.BatohZbrane[vyber-1];
+                    Zbran zbran = this.BatohZbrane[vyber - 1];
 
                     if (BatohZbrane.Contains(zbran))
                     {
                         this.NasazenaZbran = zbran;
+                        this.Sila = this.ZakladniSila + zbran.Sila;
                         this.InventarZbrane();
                     } else
                         this.InventarZbrane();
@@ -117,6 +128,7 @@ namespace Legend_of_Thoron
                     if (BatohBrneni.Contains(brneni))
                     {
                         this.NasazeneBrneni = brneni;
+                        this.Obrana = this.ZakladniObrana + brneni.Obrana;
                         this.InventarBrneni();
                     }
                     else
@@ -141,6 +153,12 @@ namespace Legend_of_Thoron
                     if (BatohLektvary.Contains(lektvar))
                     {
                         this.NasazenyLektvar = lektvar;
+                        this.AktualniHP = this.AktualniHP + lektvar.AktualniHP;
+                        while (this.AktualniHP > this.ZakladniHP) {
+                            int OdebratHP = this.AktualniHP - this.ZakladniHP;
+                            this.AktualniHP -= OdebratHP;
+                        }
+                        this.ZahoditLektvar(lektvar);
                         this.InventarLektvary();
                     }
                     else
@@ -245,7 +263,7 @@ namespace Legend_of_Thoron
             Console.Clear();
             int i = 1;
             Console.WriteLine("\n ------ Lektvary v inventáři ------ \n");
-            if (!(this.BatohZbrane.Count! >= 1))
+            if (!(this.BatohLektvary.Count! >= 1))
             {
                 Console.WriteLine(" ! Nemáš žádné lektvary.");
                 Console.WriteLine("\n -------------------------------- \n");
@@ -262,7 +280,7 @@ namespace Legend_of_Thoron
                     i++;
                 }
                 Console.WriteLine("\n --------------------------------");
-                Console.WriteLine("\n 1. Nasadit lektvar");
+                Console.WriteLine("\n 1. Použít lektvar");
             }
             Console.WriteLine(" 9. Zpět do inventáře");
             var vyber = Console.ReadLine();

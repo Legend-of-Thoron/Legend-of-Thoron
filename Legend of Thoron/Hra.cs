@@ -1,27 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Threading;
 
 namespace Legend_of_Thoron
 {
     public class Hra
     {
-        public Hrdina Hrdina { get; set; }
+        public Gladiator Gladiator { get; set; }
         public Hra()
         {
             Console.WriteLine(" \\ Probíhá inicializace hry... \n");
 
-            this.Hrdina = new Hrdina();
+            this.Gladiator = new Gladiator();
 
-            Hrdina.Vytvorit();
+            Gladiator.Vytvorit();
         }
 
         public void Zapnout()
         {
             Console.WriteLine("\n \\ Probíhá zapínaní hry...");
-
-            Console.WriteLine("\n     Welcome To      ");
-            Console.WriteLine("The Legend of Thoron \n");
+            Console.WriteLine();
+            Console.WriteLine("          ,                    &&/                           ");
+            Console.WriteLine("         .&&%                 &&&&(              &,          ");
+            Console.WriteLine("         *&&&&#              %&&&&&            .&&&.         ");
+            Console.WriteLine("         %&&&&&&            %&&&&&%           *&&&&%         ");
+            Console.WriteLine("         %&&&&&&(          *&&&&&&.          #&&&&&&.        ");
+            Console.WriteLine("          .&&&%                             ,&&&&&&%         ");
+            Console.WriteLine("            ,         /&&&&&&&&&&&&&&&&&       /&&&.         ");
+            Console.WriteLine("                   .%&&&&&&&&&&&&&&&&&&&&/                   ");
+            Console.WriteLine("                 *&&&&&.              &&&&&.                 ");
+            Console.WriteLine("              .&&&&&&(  ,&&&&&&&%/,.   ,&&&&(                ");
+            Console.WriteLine("              &&&&&&#   /&&.    .*&&&&   (&&&&#&/            ");
+            Console.WriteLine("              #&&&&&*   #&&.     ,&&&(    %&&&&              ");
+            Console.WriteLine("              *&&&&&,   &&&    &&&&&&.  #&&&&.               ");
+            Console.WriteLine("               &&&&&,   (&&&&&&&&&#(, (&&&&,                 ");
+            Console.WriteLine("               %&&&&,         ,%&&&&&&&&&(                   ");
+            Console.WriteLine("               ,&&&&*     .         .(%%                     ");
+            Console.WriteLine("                &&&&(    .&&&&&(.      *%%                   ");
+            Console.WriteLine("                    .    ,&&&&&&&&&&&&&&(                    ");
+            Console.WriteLine("                              .(%&&&&&&                      ");
+            Console.WriteLine("\n                    ! Hra připravena !                     ");
+            Console.Write("\n \\ Stiskni jakékoliv tlačítko pro pokračování...");
+            Console.ReadKey();
             this.Hlavni();
         }
         public void Hlavni()
@@ -30,8 +52,8 @@ namespace Legend_of_Thoron
             Console.WriteLine("\n \\ Hlavní menu");
             Console.WriteLine(" 1. Zkouknout statistiky");
             Console.WriteLine(" 2. Zobrazit inventář");
-            Console.WriteLine(" 3. Bojovat s náhodným monstrem - Být 'Hrdina'");
-            Console.WriteLine(" 4. Vybrat monstrum - Být 'Veterán'");
+            Console.WriteLine(" 3. Bojovat s náhodným protivníkem - Být 'Válečník'");
+            Console.WriteLine(" 4. Turnament - Být 'Vůdce'");
             Console.WriteLine(" 9. Odejít - Být 'Zbabělec'");
             var vyber = Console.ReadLine();
             if (vyber == "1")
@@ -61,13 +83,13 @@ namespace Legend_of_Thoron
 
         public void Statistiky()
         {
-            Hrdina.Statistiky();
+            Gladiator.Statistiky();
             this.Hlavni();
         }
 
         public void Inventar()
         {
-            Hrdina.Inventar();
+            Gladiator.Inventar();
             this.Hlavni();
         }
     }
