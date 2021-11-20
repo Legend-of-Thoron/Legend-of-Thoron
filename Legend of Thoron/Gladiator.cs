@@ -55,6 +55,8 @@ namespace Legend_of_Thoron
                 {
                     this.ZakladniSila = 50;
                     this.ZakladniObrana = 50;
+                    this.Sila = ZakladniSila;
+                    this.Obrana = ZakladniObrana;
                 }
             }
 
