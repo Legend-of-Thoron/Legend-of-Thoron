@@ -5,19 +5,21 @@ using System.Text;
 
 namespace Legend_of_Thoron
 {
-    public class Hrdina
+    public class Gladiator
     {
         
 
-        public Hrdina()
+        public Gladiator()
         {
-            Console.WriteLine(" \\ Probíhá inicializace hrdiny... \n");
+            Console.WriteLine(" \\ Probíhá inicializace gladiátora... \n");
 
             this.BatohBrneni = new List<Brneni>();
             this.BatohZbrane = new List<Zbran>();
             this.BatohLektvary = new List<Lektvar>();
             this.Sila = 10;
+            this.ZakladniSila = 10;
             this.Obrana = 10;
+            this.ZakladniObrana = 10;
             this.ZakladniHP = 30;
             this.AktualniHP = 30;
             this.Zlataky = 0;
@@ -26,7 +28,9 @@ namespace Legend_of_Thoron
         // Vlastnosti naší třídy
         public string Jmeno { get; set; }
         public int Sila { get; set; }
+        public int ZakladniSila { get; set; }
         public int Obrana { get; set; }
+        public int ZakladniObrana { get; set; }
         public int ZakladniHP { get; set; }
         public int AktualniHP { get; set; }
         public int Zlataky { get; set; }
@@ -45,16 +49,16 @@ namespace Legend_of_Thoron
             Console.WriteLine(" \\ Probíhá vytváření hrdiny...");
             while (String.IsNullOrWhiteSpace(this.Jmeno))
             {
-                Console.Write(" - Pojmenuj svého hrdinu: ");
+                Console.Write(" - Pojmenuj svého gladiátora: ");
                 this.Jmeno = Console.ReadLine();
                 if(this.Jmeno == "King")
                 {
-                    this.Sila = 50;
-                    this.Obrana = 50;
+                    this.ZakladniSila = 50;
+                    this.ZakladniObrana = 50;
                 }
             }
 
-            Console.WriteLine(" \\ Hrdina vytvořen... \n");
+            Console.WriteLine(" \\ Gladiátor vytvořen... \n");
         }
         public void Statistiky()
         {
@@ -96,6 +100,7 @@ namespace Legend_of_Thoron
                     if (BatohZbrane.Contains(zbran))
                     {
                         this.NasazenaZbran = zbran;
+                        this.Sila = this.ZakladniSila + zbran.Sila;
                         this.InventarZbrane();
                     } else
                         this.InventarZbrane();
@@ -117,6 +122,7 @@ namespace Legend_of_Thoron
                     if (BatohBrneni.Contains(brneni))
                     {
                         this.NasazeneBrneni = brneni;
+                        this.Obrana = this.ZakladniObrana + brneni.Obrana;
                         this.InventarBrneni();
                     }
                     else
