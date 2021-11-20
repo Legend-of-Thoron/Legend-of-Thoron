@@ -9,10 +9,12 @@ namespace Legend_of_Thoron
         public static void Run()
         {
             BrneniList brneni = new BrneniList();
+            Lektvary lektvar = new Lektvary();
             var hra = new Hra();
             Gladiator Gladiator = hra.Gladiator;
             Gladiator.SebratBrneni(brneni.roztrhane_hadry);
             Gladiator.SebratBrneni(brneni.obrneny_habit);
+            Gladiator.SebratLektvar(lektvar.velky_lektvar);
             hra.Zapnout();
         }
     }
