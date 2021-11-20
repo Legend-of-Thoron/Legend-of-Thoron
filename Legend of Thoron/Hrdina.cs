@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Legend_of_Thoron
 {
     public class Hrdina
     {
+        
+
         public Hrdina()
         {
             Console.WriteLine(" \\ Probíhá inicializace hrdiny... \n");
@@ -55,79 +58,218 @@ namespace Legend_of_Thoron
         }
         public void Statistiky()
         {
-            Console.WriteLine(" ------ " + this.Jmeno + " ------");
+            Console.Clear();
+            Console.WriteLine("\n ------ " + this.Jmeno + " ------");
             Console.WriteLine("  Síla: " + this.Sila);
             Console.WriteLine("  Obrana: " + this.Obrana);
             Console.WriteLine("  Životy: " + this.AktualniHP + "/" + this.ZakladniHP);
             Console.WriteLine("  Zlaťáky: " + this.Zlataky);
+            Console.WriteLine("---------------------------------------");
+            Console.WriteLine("\n 9. Zpět do menu");
+            Console.ReadKey();
         }
         public void SebratZbran(Zbran zbran)
         {
             this.BatohZbrane.Add(zbran);
             Console.WriteLine("\n ! Sebral jsi {0}.", zbran.Nazev);
         }
+        public void SebratBrneni(Brneni brneni)
+        {
+            this.BatohBrneni.Add(brneni);
+            Console.WriteLine("\n ! Sebral jsi {0}.", brneni.Nazev);
+        }
         public void ZahoditZbran(Zbran zbran)
         {
             this.BatohZbrane.Remove(zbran);
             Console.WriteLine("\n ! Zahodil jsi {0}.", zbran.Nazev);
         }
-        public void NasaditZbran(Zbran zbran)
+        public void NasaditZbran()
         {
-            this.NasazenaZbran = zbran;
-            Console.WriteLine("\n ! Zbraň {0} byla nasazena.", zbran.Nazev);
-        }
-            public void Inventar()
-        {
-            int i = 1;
-            Console.WriteLine("\n ----------- INVENTÁŘ -----------");
-
-            Console.WriteLine("\n ------ Zbraně v inventáři ------");
-            if (this.BatohZbrane.Count! >= 1)
+            Console.Write("\n - Vyber si předmět z inventáře nebo vyber 9 aby jsi se vrátil zpět: ");
+            int vyber;
+            if (int.TryParse(Console.ReadLine(), out vyber))
             {
-                foreach (var predmet in this.BatohZbrane)
+                if ((vyber-1) < this.BatohZbrane.Count)
                 {
+                    Zbran zbran = this.BatohZbrane[vyber-1];
 
-                    if (this.NasazenaZbran == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
-                    else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
-                    i++;
-                }
-            }
-            else
-                Console.WriteLine(" ! Nemáš žádné zbraně.");
-
-            i = 1;
-            Console.WriteLine("\n ------ Brnění v inventáři ------");
-            if (this.BatohBrneni.Count! >= 1)
-            {
-                foreach (var predmet in this.BatohBrneni)
-                {
-
-                    if (this.NasazeneBrneni == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
-                    else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
-                    i++;
-                }
-            }
-            else
-                Console.WriteLine(" ! Nemáš žádné brnění.");
-
-            i = 1;
-            Console.WriteLine("\n ------ Lektvary v inventáři ------");
-            if (this.BatohLektvary.Count !>= 1)
-            {
-                foreach (var predmet in this.BatohLektvary)
-                {
-                    if (this.NasazenyLektvar == predmet)
-                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, predmet.Nazev);
-                    else
-                        Console.WriteLine(" {0}. {1}", i, predmet.Nazev);
-                    i++;
-                }
+                    if (BatohZbrane.Contains(zbran))
+                    {
+                        this.NasazenaZbran = zbran;
+                        this.InventarZbrane();
+                    } else
+                        this.InventarZbrane();
+                } else
+                    this.InventarZbrane();
             } else
+                this.InventarZbrane();
+        }
+        public void NasaditBrneni()
+        {
+            Console.Write("\n - Vyber si předmět z inventáře nebo vyber 9 aby jsi se vrátil zpět: ");
+            int vyber;
+            if (int.TryParse(Console.ReadLine(), out vyber))
+            {
+                if ((vyber - 1) < this.BatohBrneni.Count)
+                {
+                    Brneni brneni = this.BatohBrneni[vyber - 1];
+
+                    if (BatohBrneni.Contains(brneni))
+                    {
+                        this.NasazeneBrneni = brneni;
+                        this.InventarBrneni();
+                    }
+                    else
+                        this.InventarBrneni();
+                }
+                else
+                    this.InventarBrneni();
+            }
+            else
+                this.InventarBrneni();
+        }
+        public void NasaditLektvar()
+        {
+            Console.Write("\n - Vyber si předmět z inventáře nebo vyber 9 aby jsi se vrátil zpět: ");
+            int vyber;
+            if (int.TryParse(Console.ReadLine(), out vyber))
+            {
+                if ((vyber - 1) < this.BatohLektvary.Count)
+                {
+                    Lektvar lektvar = this.BatohLektvary[vyber - 1];
+
+                    if (BatohLektvary.Contains(lektvar))
+                    {
+                        this.NasazenyLektvar = lektvar;
+                        this.InventarLektvary();
+                    }
+                    else
+                        this.InventarLektvary();
+                }
+                else
+                    this.InventarLektvary();
+            }
+            else
+                this.InventarLektvary();
+        }
+        public void Inventar()
+        {
+            Console.Clear();
+            Console.WriteLine("\n \\ Inventář");
+            Console.WriteLine(" 1. Zbraně");
+            Console.WriteLine(" 2. Brnění");
+            Console.WriteLine(" 3. Lektvary");
+            Console.WriteLine(" 9. Zpět do menu");
+            var vyber = Console.ReadLine();
+            if (vyber == "1")
+            {
+                this.InventarZbrane();
+            }
+            else if (vyber == "2")
+            {
+                this.InventarBrneni();
+            }
+            else if (vyber == "3")
+            {
+                this.InventarLektvary();
+            }
+        }
+        public void InventarZbrane()
+        {
+            Console.Clear();
+            int i = 1;
+            Console.WriteLine("\n ------ Zbraně v inventáři ------ \n");
+            if (!(this.BatohZbrane.Count! >= 1))
+            {
+                Console.WriteLine(" ! Nemáš žádné zbraně.");
+                Console.WriteLine("\n -------------------------------- \n");
+            } else
+            {
+                foreach (var z in this.BatohZbrane)
+                {
+
+                    if (this.NasazenaZbran == z)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, z.Nazev);
+                    else
+                        Console.WriteLine(" {0}. {1}", i, z.Nazev);
+                    i++;
+                }
+                Console.WriteLine("\n --------------------------------");
+                Console.WriteLine("\n 1. Nasadit zbraň");
+            }
+            Console.WriteLine(" 9. Zpět do inventáře");
+            var vyber = Console.ReadLine();
+            if (vyber == "1" && this.BatohZbrane.Count! >= 1)
+            {
+                this.NasaditZbran();
+                this.Inventar();
+            } else
+                this.Inventar();
+        }
+        public void InventarBrneni()
+        {
+            Console.Clear();
+            int i = 1;
+            Console.WriteLine("\n ------ Brnění v inventáři ------ \n");
+            if (!(this.BatohBrneni.Count! >= 1))
+                Console.WriteLine(" ! Nemáš žádné brnění.");
+            else
+            {
+                foreach (var b in this.BatohBrneni)
+                {
+
+                    if (this.NasazeneBrneni == b)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, b.Nazev);
+                    else
+                        Console.WriteLine(" {0}. {1}", i, b.Nazev);
+                    i++;
+                }
+                Console.WriteLine("\n --------------------------------");
+                Console.WriteLine("\n 1. Nasadit brnění");
+            }
+            Console.WriteLine(" 9. Zpět do inventáře");
+            var vyber = Console.ReadLine();
+            if (vyber == "1" && this.BatohBrneni.Count! >= 1)
+            {
+                this.NasaditBrneni();
+                this.Inventar();
+            }
+            else
+                this.Inventar();
+        }
+        public void InventarLektvary()
+        {
+            Console.Clear();
+            int i = 1;
+            Console.WriteLine("\n ------ Lektvary v inventáři ------ \n");
+            if (!(this.BatohZbrane.Count! >= 1))
+            {
                 Console.WriteLine(" ! Nemáš žádné lektvary.");
+                Console.WriteLine("\n -------------------------------- \n");
+            }
+            else
+            {
+                foreach (var l in this.BatohLektvary)
+                {
+
+                    if (this.NasazenyLektvar == l)
+                        Console.WriteLine(" {0}. {1} (Nasazeno)", i, l.Nazev);
+                    else
+                        Console.WriteLine(" {0}. {1}", i, l.Nazev);
+                    i++;
+                }
+                Console.WriteLine("\n --------------------------------");
+                Console.WriteLine("\n 1. Nasadit lektvar");
+            }
+            Console.WriteLine(" 9. Zpět do inventáře");
+            var vyber = Console.ReadLine();
+            if (vyber == "1" && this.BatohLektvary.Count! >= 1)
+            {
+                this.NasaditLektvar();
+                this.Inventar();
+            }
+            else
+                this.Inventar();
         }
     }
 }
