@@ -212,7 +212,10 @@ namespace Legend_of_Thoron
             int i = 1;
             Console.WriteLine("\n ------ Brnění v inventáři ------ \n");
             if (!(this.BatohBrneni.Count! >= 1))
+            {
                 Console.WriteLine(" ! Nemáš žádné brnění.");
+                Console.WriteLine("\n -------------------------------- \n");
+            }
             else
             {
                 foreach (var b in this.BatohBrneni)
