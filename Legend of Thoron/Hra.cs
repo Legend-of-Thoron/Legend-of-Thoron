@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Legend_of_Thoron
 {
-    public class Hra
+    public class Hra 
     {
         public Gladiator Gladiator { get; set; }
         public Hra()
