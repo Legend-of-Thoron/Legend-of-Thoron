@@ -5,6 +5,8 @@
   - @Ciernava-Viktor
   - @ChaostruxCZ
   - @MikroNau
+  - @Samuel0479
+  - @PURPIK
   
 ### V čem je hra vytvořena?
   Hra je psaná v C#, přesněji Console Application .NET Core.
