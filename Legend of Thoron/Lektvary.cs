@@ -19,6 +19,7 @@ namespace Legend_of_Thoron
     {
         public Lektvar maly_lektvar = new Lektvar("Malý Lektvar", 5);
         public Lektvar velky_lektvar = new Lektvar("Velký Lektvar", 25);
+        //tvoje mama
         public Lektvary()
         { }
     }
