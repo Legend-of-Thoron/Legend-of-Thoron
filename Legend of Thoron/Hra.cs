@@ -66,14 +66,13 @@ namespace Legend_of_Thoron
             }
             else if (vyber == "3")
             {
-                //this.NahodnySouboj();
+                //Gladiator.Souboj();
             }
             else if (vyber == "4")
             {
-                //this.SpecifickySouboj();
-
-                //TODO Vytvořit menu na výběr monstra
-                //this.Souboj();
+                //TODO: Po každých 10 soubojích, je zpřístupněn turnaj s 5 nah. bojovníky a  1 bossem.
+                //TODO: Každý nový turnaj má více potřebných soubojů a více protivníků k dostažení bosse.
+                //Gladiator.Trunaj();
             }
             else
             {

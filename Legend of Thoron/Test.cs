@@ -11,6 +11,7 @@ namespace Legend_of_Thoron
             BrneniList brneni = new BrneniList();
             Lektvary lektvar = new Lektvary();
             var hra = new Hra();
+            var souboj = new souboj();
             Gladiator Gladiator = hra.Gladiator;
             Console.WriteLine(" \\ Rozpoznána Testovací verze hry!");
             Gladiator.SebratBrneni(brneni.roztrhane_hadry);
