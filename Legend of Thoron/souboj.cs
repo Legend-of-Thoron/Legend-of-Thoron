@@ -15,7 +15,7 @@ namespace Legend_of_Thoron
             string Name = "";
             Name += consonants[r.Next(consonants.Length)].ToUpper();
             Name += vowels[r.Next(vowels.Length)];
-            int b = 2; //b tells how many times a new letter has been added. It's 2 right now because the first two letters are already in the name.
+            int b = 2;
             while (b < len)
             {
                 Name += consonants[r.Next(consonants.Length)];
@@ -26,7 +26,7 @@ namespace Legend_of_Thoron
 
             return Name;
         }
-        public souboj()
+        public souboj(Gladiator postava)
         {
             Zbrane zbrane = new Zbrane();
             List<Zbran> zbraneList = new List<Zbran>();
@@ -35,11 +35,16 @@ namespace Legend_of_Thoron
             BrneniList brneni = new BrneniList();
             List<Brneni> brneniList = new List<Brneni>();
             brneniList.Add(brneni.kozene_hadry);
+            var zivoty = new Random().Next(postava.ZakladniHP-2, postava.ZakladniHP+2);
             
-            //TODO: random generator statistik nepřítele, odvozené od postavy.
-            nepritel = new Nepratele(this.namegen(10), 1, 1, 1, 1, 1, 1, 2, zbraneList[0], brneniList[0]);
+            //TODO: none
+            nepritel = new Nepratele(this.namegen(6), new Random().Next(postava.Sila-2, postava.Sila+2), new Random().Next(postava.Obrana-2, postava.Obrana+2), zivoty, zivoty, new Random().Next(postava.Sila-(postava.Sila*2), postava.Sila+(postava.Sila*2)));
             
             Console.WriteLine(nepritel.Jmeno);
+            Console.WriteLine(nepritel.Sila);
+            Console.WriteLine(nepritel.Obrana);
+            Console.WriteLine(nepritel.ZakladniHP);
+            Console.WriteLine(nepritel.Zlataky);
         }
         
         public Nepratele nepritel;
