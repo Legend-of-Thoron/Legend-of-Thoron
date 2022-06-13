@@ -54,6 +54,7 @@ namespace Legend_of_Thoron
             Console.WriteLine(" 2. Zobrazit inventář");
             Console.WriteLine(" 3. Bojovat s náhodným protivníkem - Být 'Válečník'");
             Console.WriteLine(" 4. Turnament - Být 'Vůdce'");
+            Console.WriteLine(" 5. Obchod (Albert)");
             Console.WriteLine(" 9. Odejít - Být 'Zbabělec'");
             var vyber = Console.ReadLine();
             if (vyber == "1")
