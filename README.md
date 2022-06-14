@@ -4,6 +4,7 @@
 ### Kontributoři projektu:
   - @Ciernava-Viktor
   - @ChaostruxCZ
+  - @neoxik
   - @MikroNau
   - @Samuel0479
   - @PURPIK
