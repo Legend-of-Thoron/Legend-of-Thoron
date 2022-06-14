@@ -15,7 +15,7 @@ namespace Legend_of_Thoron
             Console.WriteLine(" \\ Probíhá inicializace hry... \n");
 
             this.Gladiator = new Gladiator();
-            this.Obchod = new Obchod();
+            this.Obchod = new Obchod(Gladiator);
 
             Gladiator.Vytvorit();
         }

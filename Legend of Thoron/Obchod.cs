@@ -11,7 +11,6 @@ namespace Legend_of_Thoron
         public List<Lektvar> BatohLektvary { get; set; }
         public Gladiator Gladiator { get; set; }
         public int Zlataky { get; set; }
-        public int CenaItemu { get; set; }
         public Zbran NasazenaZbran { get; set; }
         public Brneni NasazeneBrneni { get; set; }
         public Lektvar NasazenyLektvar { get; set; }
@@ -23,31 +22,6 @@ namespace Legend_of_Thoron
         List<Zbran> RandomZbrane = new List<Zbran>();
         List<Lektvar> RandomLektvary = new List<Lektvar>();
         List<Brneni> RandomBrneni = new List<Brneni>();
-
-        public Zbran opotrebovany_mec = new Zbran("Opotřebovaný Meč", 1, 30);
-        public Zbran v_nova_sekera = new Zbran("Velice Nová Sekera", 10, 100);
-
-        public Lektvar maly_lektvar = new Lektvar("Malý Lektvar", 5, 25);
-        public Lektvar velky_lektvar = new Lektvar("Velký Lektvar", 15, 50);
-        public Lektvar felix_felicis = new Lektvar("Felix Felicis", 25, 100);
-        public Lektvar vyluh_z_ponozek = new Lektvar("Výluh Z Ponožek", 3, 5);
-        public Lektvar okena = new Lektvar("Okena", 6, 10);
-        public Lektvar stredni_lektvar = new Lektvar("Stredni Lektvar", 10, 35);
-        public Lektvar neznama_tekutina = new Lektvar("Neznámá Tekutina", 18, 75);
-        public Lektvar modry_lektvar = new Lektvar("Modrý Lektvar", 12, 37);
-        public Lektvar cerveny_lektvar = new Lektvar("Červený Lektvar", 16, 55);
-        public Lektvar zlaty_lektvar = new Lektvar("Zlatý Lektvar", 20, 60);
-
-        public Brneni roztrhane_hadry = new Brneni("Roztrhané Hadry", 2, 5);
-        public Brneni obrneny_habit = new Brneni("Obrněný Hábit", 5, 10);
-        public Brneni kozene_hadry = new Brneni("Kožené Hadry", 3, 15);
-        public Brneni zelezne_brneni = new Brneni("Železné Brnění", 8, 30);
-        public Brneni zlata_zbroj = new Brneni("Zlatá Zbroj", 7, 50);
-        public Brneni magicky_plast = new Brneni("Magický Plášť", 10, 75);
-        public Brneni hornicky_oblek = new Brneni("Hornický Oblek", 2, 25);
-        public Brneni uhelné_brneni = new Brneni("Uhelné Brnění", 6, 35);
-        public Brneni titaniova_zbroj = new Brneni("Titániová Zbroj", 9, 100);
-        public Brneni smradlve_trenky = new Brneni("Smradlavé Trenky", 1, 5);
 
 
 
@@ -105,10 +79,10 @@ namespace Legend_of_Thoron
                 {
                     Zbran zbran = this.RandomZbrane[vyber - 1];
 
-                    if (RandomZbrane.Contains(zbran) && Zlataky >= CenaItemu)
+                    if (RandomZbrane.Contains(zbran) && Zlataky >= this.RandomBrneni[vyber - 1].CenaItemu)
                     {
-                        this.RandomZbrane = this.BatohZbrane;
-                        this.Zlataky = Zlataky - CenaItemu;
+                        Gladiator.BatohZbrane.Add(zbran);
+                        Gladiator.Zlataky = Gladiator.Zlataky - this.RandomBrneni[vyber - 1].CenaItemu;
                         this.NakupZbrane();
                     }
                     else
@@ -130,10 +104,10 @@ namespace Legend_of_Thoron
                 {
                     Brneni brneni = this.RandomBrneni[vyber - 1];
 
-                    if (RandomBrneni.Contains(brneni) && Zlataky >= CenaItemu)
+                    if (RandomBrneni.Contains(brneni) && Zlataky >= this.RandomBrneni[vyber - 1].CenaItemu)
                     {
-                        this.RandomBrneni = this.BatohBrneni;
-                        this.Zlataky = Zlataky - CenaItemu;
+                        Gladiator.BatohBrneni.Add(brneni);
+                        Gladiator.Zlataky = Gladiator.Zlataky - this.RandomBrneni[vyber - 1].CenaItemu;
                         this.NakupBrneni();
                     }
                     else
@@ -155,10 +129,10 @@ namespace Legend_of_Thoron
                 {
                     Lektvar lektvar = this.RandomLektvary[vyber - 1];
 
-                    if (RandomLektvary.Contains(lektvar) && Zlataky >= CenaItemu)
+                    if (RandomLektvary.Contains(lektvar) && Zlataky >= this.RandomBrneni[vyber - 1].CenaItemu)
                     {
-                        this.RandomLektvary = this.BatohLektvary;
-                        this.Zlataky = Zlataky - CenaItemu;
+                        Gladiator.BatohLektvary.Add(lektvar);
+                        Gladiator.Zlataky = Gladiator.Zlataky - this.RandomBrneni[vyber - 1].CenaItemu;
                         this.NakupLektvaru();
                     }
                     else
@@ -202,14 +176,14 @@ namespace Legend_of_Thoron
             int vyber;
             if (int.TryParse(Console.ReadLine(), out vyber))
             {
-                if ((vyber - 1) < this.BatohZbrane.Count)
+                if ((vyber - 1) < Gladiator.BatohZbrane.Count)
                 {
-                    Zbran zbran = this.BatohZbrane[vyber - 1];
+                    Zbran zbran = Gladiator.BatohZbrane[vyber - 1];
 
-                    if (BatohZbrane.Contains(zbran) && zbran != NasazenaZbran)
+                    if (BatohZbrane.Contains(zbran) && zbran != Gladiator.NasazenaZbran)
                     {
-                        this.BatohZbrane.Remove(zbran);
-                        this.Zlataky = Zlataky + CenaItemu;
+                        Gladiator.BatohZbrane.Remove(zbran);
+                        Gladiator.Zlataky = Gladiator.Zlataky + this.RandomBrneni[vyber - 1].CenaItemu;
                         this.ProdejZbrane();
                     }
                     else
@@ -228,14 +202,14 @@ namespace Legend_of_Thoron
             int vyber;
             if (int.TryParse(Console.ReadLine(), out vyber))
             {
-                if ((vyber - 1) < this.BatohBrneni.Count)
+                if ((vyber - 1) < Gladiator.BatohBrneni.Count)
                 {
-                    Brneni brneni = this.BatohBrneni[vyber - 1];
+                    Brneni brneni = Gladiator.BatohBrneni[vyber - 1];
 
-                    if (BatohBrneni.Contains(brneni) && brneni != NasazeneBrneni)
+                    if (Gladiator.BatohBrneni.Contains(brneni) && brneni != Gladiator.NasazeneBrneni)
                     {
-                        this.BatohBrneni.Remove(brneni);
-                        this.Zlataky = Zlataky + CenaItemu;
+                        Gladiator.BatohBrneni.Remove(brneni);
+                        Gladiator.Zlataky = Gladiator.Zlataky + this.RandomBrneni[vyber - 1].CenaItemu;
                         this.ProdejBrneni();
                     }
                     else
@@ -254,14 +228,14 @@ namespace Legend_of_Thoron
             int vyber;
             if (int.TryParse(Console.ReadLine(), out vyber))
             {
-                if ((vyber - 1) < this.BatohLektvary.Count)
+                if ((vyber - 1) < Gladiator.BatohLektvary.Count)
                 {
-                    Lektvar lektvary = this.BatohLektvary[vyber - 1];
+                    Lektvar lektvary = Gladiator.BatohLektvary[vyber - 1];
 
-                    if (BatohLektvary.Contains(lektvary))
+                    if (Gladiator.BatohLektvary.Contains(lektvary))
                     {
-                        this.BatohLektvary.Remove(lektvary);
-                        this.Zlataky = Zlataky + CenaItemu;
+                        Gladiator.BatohLektvary.Remove(lektvary);
+                        Gladiator.Zlataky = Gladiator.Zlataky + this.RandomBrneni[vyber - 1].CenaItemu;
                         this.ProdejLektvaru();
                     }
                     else
