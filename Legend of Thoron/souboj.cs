@@ -49,7 +49,7 @@ namespace Legend_of_Thoron
             Console.WriteLine("Souboj zaèal!");
             Console.WriteLine();
 
-            int b = this.AktualniHP;
+            int b = postava.ZakladniHP;
             int c = zivoty;
 
             while (b<=this.AktualniHP || c<=zivoty)
@@ -57,10 +57,10 @@ namespace Legend_of_Thoron
                 this.AktualniHP -= nepritel.Sila;
                 zivoty -= this.Sila;
 
-                Console.WriteLine("Vaše HP: "+ this.AktualniHP);
+                Console.WriteLine("Vaše HP: "+ postava.ZakladniHP);
                 Console.WriteLine("Protivníkovy HP: " + zivoty);
             }
-            if (this.AktualniHP < b)
+            if (postava.ZakladniHP < b)
             {
                 Console.WriteLine("Byl jsi poražen!");
             }
