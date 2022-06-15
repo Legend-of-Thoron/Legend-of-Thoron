@@ -35,6 +35,7 @@ namespace Legend_of_Thoron
         public int ZakladniHP { get; set; }
         public int AktualniHP { get; set; }
         public int Zlataky { get; set; }
+        public int PocetSouboju { get; set; }
         public Zbran NasazenaZbran { get; set; }
         public Brneni NasazeneBrneni { get; set; }
         public Lektvar NasazenyLektvar { get; set; }

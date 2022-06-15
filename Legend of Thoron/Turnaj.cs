@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public class Turnaj : Gladiator
+namespace Legend_of_Thoron
 {
-	public Turnaj()
-	{
-	
+    public class Turnaj
+    {
+        public Turnaj(Gladiator postava)
+        {
+            this.Gladiator = postava;
+        }
 
-
-	}
+        public Gladiator Gladiator { get; set; }
+    }
 }
