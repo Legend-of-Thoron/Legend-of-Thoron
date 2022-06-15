@@ -23,6 +23,7 @@ namespace Legend_of_Thoron
             this.ZakladniHP = 30;
             this.AktualniHP = 30;
             this.Zlataky = 0;
+            this.PocetSouboju = 0;
         }
 
         // Vlastnosti naší třídy
@@ -37,6 +38,7 @@ namespace Legend_of_Thoron
         public Zbran NasazenaZbran { get; set; }
         public Brneni NasazeneBrneni { get; set; }
         public Lektvar NasazenyLektvar { get; set; }
+        
 
         // TO-DO -
         public List<Brneni> BatohBrneni { get; set; }

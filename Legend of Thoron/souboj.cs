@@ -39,14 +39,55 @@ namespace Legend_of_Thoron
             
             //TODO: none
             nepritel = new Nepratele(this.namegen(6), new Random().Next(postava.Sila-2, postava.Sila+2), new Random().Next(postava.Obrana-2, postava.Obrana+2), zivoty, zivoty, new Random().Next(postava.Sila-(postava.Sila*2), postava.Sila+(postava.Sila*2)));
+
+            //Console.WriteLine(nepritel.Jmeno);
+            //Console.WriteLine(nepritel.Sila);
+            //Console.WriteLine(nepritel.Obrana);
+            //Console.WriteLine(nepritel.ZakladniHP);
+            //Console.WriteLine(nepritel.Zlataky);
+
+            Console.WriteLine("Souboj zaèal!");
+            Console.WriteLine();
+
+            int b = postava.ZakladniHP;
+            int c = zivoty;
+
+            while (b<=this.AktualniHP || c<=zivoty)
+            {
+                this.AktualniHP -= nepritel.Sila;
+                zivoty -= this.Sila;
+
+                Console.WriteLine("Vaše HP: "+ postava.ZakladniHP);
+                Console.WriteLine("Protivníkovy HP: " + zivoty);
+            }
+            if (postava.ZakladniHP < b)
+            {
+                Console.WriteLine("Byl jsi poražen!");
+            }
+            else if (zivoty < c)
+            {
+                Console.WriteLine("Vyhrál jsi!");
+                this.PocetSouboju++;
+            }
+
+
+           
             
-            Console.WriteLine(nepritel.Jmeno);
-            Console.WriteLine(nepritel.Sila);
-            Console.WriteLine(nepritel.Obrana);
-            Console.WriteLine(nepritel.ZakladniHP);
-            Console.WriteLine(nepritel.Zlataky);
+
+
+
+
+
+
+
+
+
+
+
+
         }
         
         public Nepratele nepritel;
+        
     }
 }
