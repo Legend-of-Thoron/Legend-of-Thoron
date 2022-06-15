@@ -28,13 +28,8 @@ namespace Legend_of_Thoron
         }
         public souboj(Gladiator postava)
         {
-            Zbrane zbrane = new Zbrane();
-            List<Zbran> zbraneList = new List<Zbran>();
-            zbraneList.Add(zbrane.opotrebovany_mec);
             
-            BrneniList brneni = new BrneniList();
-            List<Brneni> brneniList = new List<Brneni>();
-            brneniList.Add(brneni.kozene_hadry);
+
             var zivoty = new Random().Next(postava.ZakladniHP-2, postava.ZakladniHP+2);
             
             //TODO: none
@@ -49,25 +44,34 @@ namespace Legend_of_Thoron
             Console.WriteLine("Souboj zaèal!");
             Console.WriteLine();
 
-            int b = postava.ZakladniHP;
-            int c = zivoty;
-
+            int b = postava.ZakladniHP + postava.Obrana; // hp hrace
+            int c = zivoty + nepritel.Obrana; // hp enemy
+            int d = 0;
+            int e = 0;
+            Console.Clear();
             while (b<=postava.AktualniHP || c<=zivoty)
             {
-                postava.AktualniHP -= nepritel.Sila;
-                zivoty -= postava.Sila;
+                d = b;
+                e = c;
 
-                Console.WriteLine("Vaše HP: "+ postava.AktualniHP + " / " + postava.ZakladniHP);
+                b -= nepritel.Sila;
+                c -= postava.Sila;
+
+                Console.WriteLine("Vaše HP: "+ postava.AktualniHP+postava.Obrana + " / " + postava.ZakladniHP);
                 Console.WriteLine("Protivníkovy HP: " + zivoty);
+                
             }
-            if (postava.ZakladniHP < b)
+            Console.Clear();
+            if (d < b)
             {
                 Console.WriteLine("Byl jsi poražen!");
+                postava.Zlataky -= nepritel.Zlataky / 2;
             }
-            else if (zivoty < c)
+            else if (e < c)
             {
                 Console.WriteLine("Vyhrál jsi!");
                 postava.PocetSouboju++;
+                postava.Zlataky += nepritel.Zlataky;
             }
 
 
