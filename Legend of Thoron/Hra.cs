@@ -9,11 +9,13 @@ namespace Legend_of_Thoron
     public class Hra
     {
         public Gladiator Gladiator { get; set; }
+        public Obchod Obchod { get; set; }
         public Hra()
         {
             Console.WriteLine(" \\ Probíhá inicializace hry... \n");
 
             this.Gladiator = new Gladiator();
+            this.Obchod = new Obchod(Gladiator);
 
             Gladiator.Vytvorit();
         }
@@ -54,6 +56,7 @@ namespace Legend_of_Thoron
             Console.WriteLine(" 2. Zobrazit inventář");
             Console.WriteLine(" 3. Bojovat s náhodným protivníkem - Být 'Válečník'");
             Console.WriteLine(" 4. Turnament - Být 'Vůdce'");
+            Console.WriteLine(" 5. Obchod (Albert)");
             Console.WriteLine(" 9. Odejít - Být 'Zbabělec'");
             var vyber = Console.ReadLine();
             if (vyber == "1")
@@ -73,6 +76,10 @@ namespace Legend_of_Thoron
                 //TODO: Po každých 10 soubojích, je zpřístupněn turnaj s 5 nah. bojovníky a  1 bossem.
                 //TODO: Každý nový turnaj má více potřebných soubojů a více protivníků k dostažení bosse.
                 //Gladiator.Trunaj();
+            }
+            else if(vyber == "5")
+            {
+                Obchod.Menu();
             }
             else
             {
