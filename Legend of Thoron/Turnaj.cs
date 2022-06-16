@@ -14,7 +14,7 @@ namespace Legend_of_Thoron
 
             
             
-            if (postava.PocetSouboju == 10)
+            if (postava.PocetSouboju >= 10 && postava.PocetTurnaju ==0)
             {
                 int a = Boss1.AktualniHP; // hp bosse
                 int b = postava.ZakladniHP + postava.Obrana; //hp postavy
@@ -41,9 +41,10 @@ namespace Legend_of_Thoron
                     Console.WriteLine("Vyhrál jsi!");
                     
                     postava.Zlataky += Boss1.Zlataky;
+                    postava.PocetTurnaju++;
                 }
             }
-            if (postava.PocetSouboju == 25)
+            if (postava.PocetSouboju >= 25 && postava.PocetTurnaju == 1)
             {
                 int e = Boss2.AktualniHP;
                 int f = postava.ZakladniHP + postava.Obrana;
@@ -70,9 +71,10 @@ namespace Legend_of_Thoron
                     Console.WriteLine("Vyhrál jsi!");
 
                     postava.Zlataky += Boss2.Zlataky;
+                    postava.PocetTurnaju++;
                 }
             }
-            if (postava.PocetSouboju == 45)
+            if (postava.PocetSouboju >= 45 && postava.PocetTurnaju == 2)
             {
                 int i = Boss3.AktualniHP;
                 int j = postava.ZakladniHP + postava.Obrana;
@@ -99,9 +101,10 @@ namespace Legend_of_Thoron
                     Console.WriteLine("Vyhrál jsi!");
 
                     postava.Zlataky += Boss3.Zlataky;
+                    postava.PocetTurnaju++;
                 }
             }
-            if (postava.PocetSouboju == 60)
+            if (postava.PocetSouboju >= 60 && postava.PocetTurnaju == 3)
             {
                 int m = Boss4.AktualniHP;
                 int n = postava.ZakladniHP + postava.Obrana;
@@ -128,9 +131,10 @@ namespace Legend_of_Thoron
                     Console.WriteLine("Vyhrál jsi!");
 
                     postava.Zlataky += Boss4.Zlataky;
+                    postava.PocetTurnaju++;
                 }
             }
-            if (postava.PocetSouboju == 90)
+            if (postava.PocetSouboju >= 90 && postava.PocetTurnaju == 4)
             {
                 int q = Boss5.AktualniHP;
                 int r = postava.ZakladniHP + postava.Obrana;
@@ -157,6 +161,7 @@ namespace Legend_of_Thoron
                     Console.WriteLine("Vyhrál jsi!");
 
                     postava.Zlataky += Boss5.Zlataky;
+                    postava.PocetTurnaju++;
                 }
             }  
         }

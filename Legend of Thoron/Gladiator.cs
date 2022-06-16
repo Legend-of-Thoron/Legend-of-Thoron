@@ -25,6 +25,7 @@ namespace Legend_of_Thoron
             this.Zlataky = 0;
             this.PocetSouboju = 0;
             this.Zije = true;
+            this.PocetTurnaju = 0;
         }
 
         // Vlastnosti naší třídy
@@ -38,6 +39,7 @@ namespace Legend_of_Thoron
         public int Zlataky { get; set; }
         public int PocetSouboju { get; set; }
         public bool Zije { get; set; }
+        public int PocetTurnaju { get; set; }
         public Zbran NasazenaZbran { get; set; }
         public Brneni NasazeneBrneni { get; set; }
         public Lektvar NasazenyLektvar { get; set; }
