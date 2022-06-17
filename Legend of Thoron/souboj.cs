@@ -28,8 +28,6 @@ namespace Legend_of_Thoron
         }
         public souboj(Gladiator postava)
         {
-            
-
             var zivoty = new Random().Next(postava.ZakladniHP-2, postava.ZakladniHP+2);
             
             //TODO: none
@@ -66,12 +64,16 @@ namespace Legend_of_Thoron
             {
                 Console.WriteLine("Byl jsi poražen!");
                 postava.Zlataky -= nepritel.Zlataky / 2;
+                new Obchod(postava).NahodnaZbran();
+                Console.ReadKey();
             }
             else if (e < c)
             {
                 Console.WriteLine("Vyhrál jsi!");
                 postava.PocetSouboju++;
                 postava.Zlataky += nepritel.Zlataky;
+                new Obchod(postava).NahodnaZbran();
+                Console.ReadKey();
             }
 
 
@@ -92,6 +94,6 @@ namespace Legend_of_Thoron
         }
         
         public Nepratele nepritel;
-        
+
     }
 }

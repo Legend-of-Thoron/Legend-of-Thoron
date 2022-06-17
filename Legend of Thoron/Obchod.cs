@@ -93,9 +93,10 @@ namespace Legend_of_Thoron
         public void NakupZbrane()
         {
             int i = 1;
-            foreach (var Zbran in RandomZbraneVybrane)
+            foreach (var z in RandomZbraneVybrane)
             {
-                Console.WriteLine(" {0}. {1}, Sila: {2} [{3} coinu]", i, Zbran.Nazev, Zbran.Sila ,Zbran.CenaItemu);
+                Console.WriteLine(" {0}. {1}, Sila: {2} [{3} coinu]", i, z.Nazev, z.Sila ,z.CenaItemu);
+                i++;
             }
             Console.Write("\n - Vyber si předmět z obchodu nebo vyber 9 aby jsi se vrátil zpět: ");
             int vyber;
@@ -123,9 +124,10 @@ namespace Legend_of_Thoron
         public void NakupBrneni()
         {
             int i = 1;
-            foreach (var Brneni in RandomBrneniVybrane)
+            foreach (var b in RandomBrneniVybrane)
             {
-                Console.WriteLine(" {0}. {1}, Obrana: {2} [{3} coinu]", i, Brneni.Nazev, Brneni.Obrana ,Brneni.CenaItemu);
+                Console.WriteLine(" {0}. {1}, Obrana: {2} [{3} coinu]", i, b.Nazev, b.Obrana ,b.CenaItemu);
+                i++;
             }
             Console.Write("\n - Vyber si předmět z obchodu nebo vyber 9 aby jsi se vrátil zpět: ");
             int vyber;
@@ -148,7 +150,7 @@ namespace Legend_of_Thoron
                     this.NakupBrneni();
             }
             else
-                this.NakupZbrane();
+                this.NakupZbrani();
         }
 
         //Konec nakupu
