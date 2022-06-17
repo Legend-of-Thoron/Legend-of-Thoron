@@ -183,7 +183,6 @@ namespace Legend_of_Thoron
             Console.WriteLine("\n \\ Inventář");
             Console.WriteLine(" 1. Zbraně");
             Console.WriteLine(" 2. Brnění");
-            Console.WriteLine(" 3. Lektvary");
             Console.WriteLine(" 9. Zpět do menu");
             var vyber = Console.ReadLine();
             if (vyber == "1")
@@ -193,10 +192,6 @@ namespace Legend_of_Thoron
             else if (vyber == "2")
             {
                 this.InventarBrneni();
-            }
-            else if (vyber == "3")
-            {
-                this.InventarLektvary();
             }
         }
         public void InventarZbrane()
